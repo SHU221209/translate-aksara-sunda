@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penerjemah Latin dan Aksara Sunda</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+        }
+        #output {
+            font-size: 24px;
+            font-family: 'Noto Sans Sundanese', sans-serif;
+            border: 1px solid #ccc;
+            padding: 20px;
+            height: 150px;
+            white-space: pre-wrap;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sundanese&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <h1>Penerjemah Latin dan Aksara Sunda</h1>
+    
+    <textarea id="inputText" placeholder="Masukkan teks di sini..."></textarea>
+    <br>
+    <button onclick="convertToAksaraSunda()">Ubah ke Aksara Sunda</button>
+    <button onclick="convertToLatin()">Ubah ke Latin</button>
+    
+    <h2>Hasil:</h2>
+    <div id="output"></div>
+</div>
+
+<script>
+    const aksaraSundaMap = {
+        'a': 'ᮃ', 'b': 'ᮘ', 'c': 'ᮎ', 'd': 'ᮓ', 'e': 'ᮈ', 'f': 'ᮖ', 'g': 'ᮌ', 'h': 'ᮠ',
+        'i': 'ᮄ', 'j': 'ᮏ', 'k': 'ᮊ', 'l': 'ᮜ', 'm': 'ᮙ', 'n': 'ᮍ', 'o': 'ᮇ', 'p': 'ᮕ',
+        'q': 'ᮋ', 'r': 'ᮛ', 's': 'ᮞ', 't': 'ᮒ', 'u': 'ᮅ', 'v': 'ᮗ', 'w': 'ᮝ', 'x': 'ᮐ',
+        'y': 'ᮚ', 'z': 'ᮑ', 'A': 'ᮃ', 'B': 'ᮘ', 'C': 'ᮎ', 'D': 'ᮓ', 'E': 'ᮈ', 'F': 'ᮖ',
+        'G': 'ᮌ', 'H': 'ᮠ', 'I': 'ᮄ', 'J': 'ᮏ', 'K': 'ᮊ', 'L': 'ᮜ', 'M': 'ᮙ', 'N': 'ᮍ',
+        'O': 'ᮇ', 'P': 'ᮕ', 'Q': 'ᮋ', 'R': 'ᮛ', 'S': 'ᮞ', 'T': 'ᮒ', 'U': 'ᮅ', 'V': 'ᮗ',
+        'W': 'ᮝ', 'X': 'ᮐ', 'Y': 'ᮚ', 'Z': 'ᮑ', ' ': ' '
+    };
+
+    const latinMap = {};
+    for (const key in aksaraSundaMap) {
+        latinMap[aksaraSundaMap[key]] = key.toLowerCase(); // Semua huruf Latin diubah menjadi huruf kecil
+    }
+
+    function convertToAksaraSunda() {
+        const inputText = document.getElementById("inputText").value;
+        let output = '';
+        for (let char of inputText) {
+            output += aksaraSundaMap[char] || char;
+        }
+        document.getElementById("output").textContent = output;
+    }
+
+    function convertToLatin() {
+        const inputText = document.getElementById("inputText").value;
+        let output = '';
+        for (let char of inputText) {
+            output += latinMap[char] || char;
+        }
+        document.getElementById("output").textContent = output;
+    }
+</script>
+
+</body>
+</html>
